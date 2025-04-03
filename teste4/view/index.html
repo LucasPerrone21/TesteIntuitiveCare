@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+			crossorigin="anonymous"
+		/>
+		<title>Buscador Empresas</title>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			new Vue({
+				el: "#app",
+				delimiters: ["[[", "]]"], // Usa delimitadores personalizados para evitar conflito com Jinja2
+				template: `
+            <div class="container">
+                <h1>Buscador de Empresas</h1>
+                <hr />
+                <div class="form-todo form-group">
+                    <p>
+                        <input
+                            type="text"
+                            id="search"
+                            class="form-control"
+                            placeholder="Digite o nome da empresa"
+                            v-model="empresa_nome"
+                        />
+                    </p>
+                    <button type="submit" @click="buscarOperadora" class="btn btn-primary">Buscar</button>
+                </div>
+                <h2>Resultado da Busca</h2>
+                <div class="resultado-todo list-group">
+                    <div class="no-result" v-if="operators.length === 0">
+                        <p class="alert alert-info">Nenhum resultado encontrado.</p>
+                    </div>
+                    <div class="list-group-item col" v-for="operator in operators">
+                        <span>Empresa: <strong>[[ operator.nome_fantasia ]]</strong></span>
+                        <span>CNPJ: <strong>[[ operator.cnpj ]]</strong></span>
+                        <span>Telefone: <strong>[[ operator.telefone ]]</strong></span>
+                    </div>
+                </div>
+            </div>
+            `,
+				data() {
+					return {
+						empresa_nome: "",
+						operators: [],
+					};
+				},
+				methods: {
+					async buscarOperadora() {
+						if (!this.empresa_nome) {
+							alert("Digite um Nome!");
+							return;
+						}
+
+						try {
+							const response = await fetch(
+								`http://localhost:8000/operators?name=${this.empresa_nome}`
+							);
+							const data = await response.json();
+							this.operators = data;
+						} catch (error) {
+							this.operators = [];
+							console.error("Erro ao buscar operadores:", error);
+						}
+					},
+				},
+			});
+		</script>
+	</body>
+</html>

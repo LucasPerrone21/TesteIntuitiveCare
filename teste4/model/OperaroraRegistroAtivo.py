@@ -1,31 +1,6 @@
-from peewee import *
-import os
+from peewee import AutoField, DateField, CharField, DecimalField, IntegerField
+from database.database import BaseModel
 
-
-db = PostgresqlDatabase(
-    os.getenv('POSTGRES_DB'),
-    user=os.getenv('POSTGRES_USER'),
-    password=os.getenv('POSTGRES_PASSWORD'),
-    host=os.getenv('POSTGRES_HOST'),
-    port=os.getenv('POSTGRES_PORT'),
-)
-
-class BaseModel(Model):
-    class Meta:
-        database = db
-
-
-class PlanoDados(BaseModel):
-    id = AutoField()
-    data = DateField(null=False)
-    reg_ans = CharField(max_length=8, null=False)
-    cd_conta_contabil = CharField(max_length=9, null=False)
-    descricao = CharField(max_length=150, null=False)
-    vl_saldo_inicial = DecimalField(max_digits=20, decimal_places=2, null=False)
-    vl_saldo_final = DecimalField(max_digits=20, decimal_places=2, null=False)
-    
-    class Meta:
-        table_name = 'tbl_plano_dados'
 
 
 class OperadoraRegistroAtivo(BaseModel):
@@ -53,11 +28,3 @@ class OperadoraRegistroAtivo(BaseModel):
     
     class Meta:
         table_name = 'tbl_operadoras_registro_ativo'
-
-try:
-    db.connect()
-    db.create_tables([PlanoDados, OperadoraRegistroAtivo])
-    print("Database connected and tables created successfully.")
-except OperationalError as e:
-    print(f"Error connecting to the database: {e}")
-
