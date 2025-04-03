@@ -70,6 +70,12 @@ POSTGRES_PORT = 5432
 POSTGRES_DB = 'db_ans'
 ```
 
+Após configurar o ambiente, basta apenas rodar a API
+
+```bash
+uvicorn main:app --reload
+```
+
 ## Documentação da API do teste 4
 
 Rota para a tela em Vue.JS:
