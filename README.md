@@ -74,19 +74,19 @@ POSTGRES_DB = 'db_ans'
 
 Rota para a tela em Vue.JS:
 ```
-`http://localhost:8000/
+http://localhost:8000/
 ```
 
 Rota para listar as operadoras de acordo com um nome:
 
 ```
-`http://localhost:8000/operators?name=nomeDaEmpresa
+http://localhost:8000/operators?name=nomeDaEmpresa
 ```
 
 Rota para a documentação da API:
 
 ```
-`http://localhost:8000/docs
+http://localhost:8000/docs
 ```
 
 
