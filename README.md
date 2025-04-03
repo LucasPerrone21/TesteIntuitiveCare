@@ -1,18 +1,16 @@
 # Teste IntuitiveCare
 
-Este projeto foi desenvolvido como parte do processo seletivo da IntuitiveCare. Ele consiste em [breve descrição do objetivo do projeto].
+Este projeto foi desenvolvido como parte do processo seletivo da IntuitiveCare. Ele consiste em 4 testes de diferentes especialidades.
 
 ## Tecnologias Utilizadas
 
-- Python 3.x
-- [Outras tecnologias ou bibliotecas utilizadas]
+- Python 3.12 ou superior
 
 ## Pré-requisitos
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
-- Você instalou o Python 3.x
-- [Outros pré-requisitos, se houver]
+- Você instalou o Python 3.12 ou superior
 
 ## Instalação
 
