@@ -13,8 +13,8 @@ import zipfile
 def baixar_arquivo(url):
     response = requests.get(url, stream=True)
     if response.status_code == 200:
-        nome_arquivo = url.split("/")[-1]  # Obtém o nome do arquivo pelo link
-        return (nome_arquivo, response.content) # Armazena o nome e os dados do arquivo
+        nome_arquivo = url.split("/")[-1]
+        return (nome_arquivo, response.content)
     else:
         raise ValueError("Erro ao baixar o arquivo. Código de status:", response.status_code)
 

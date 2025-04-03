@@ -54,8 +54,8 @@ SELECT
     endereco_eletronico,
     representante,
     cargo_representante,
-    CAST(NULLIF(regiao_de_Comercializacao, '') AS INTEGER), -- Converte para INTEGER, tratando valores vazios
-    CAST(NULLIF(data_registro_ans, '') AS DATE) -- Converte para DATE, tratando valores vazios
+    CAST(NULLIF(regiao_de_Comercializacao, '') AS INTEGER),
+    CAST(NULLIF(data_registro_ans, '') AS DATE)
 FROM temp_operadoras_registro_ativo;
 
 
